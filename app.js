@@ -1,9 +1,9 @@
+//IMPORTE DE ARQUIVOS
 import express from 'express';
-
 import { db } from './models/index.js';
-
 import { accountRouter } from './routes/accountsRoutes.js';
 
+//CONEXÃO COM O MONGODB
 (async () => {
   try {
     await db.mongoose.connect(db.url, {
