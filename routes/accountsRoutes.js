@@ -27,6 +27,11 @@ app.get(
   accountController.findClientRichers
 );
 
+app.get(
+  '/account/client/richers/novo/:numCustomers',
+  accountController.findClientRichers
+);
+
 app.post('/account/clientPrivate', accountController.setClientPrivate);
 app.put(
   '/account/transfer/:source/:destiny/:value',
