@@ -24,6 +24,6 @@ app.use(express.json());
 
 app.use(accountRouter);
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
   console.log('API Iniciada com Sucesso!');
 });
