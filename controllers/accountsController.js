@@ -59,6 +59,30 @@ const updateDeposit = async (req, res) => {
   }
 };
 
+const updateDepositPatch = async (req, res) => {
+  const agencia = Number(req.params.agencia);
+  const conta = Number(req.params.conta);
+  const deposito = Number(req.params.deposito);
+  try {
+    const dataDeposit = await Account.findOneAndUpdate(
+      {
+        $and: [{ agencia: agencia }, { conta: conta }],
+      },
+      { $inc: { balance: deposito } },
+      {
+        new: true,
+      }
+    );
+    if (!dataDeposit) {
+      res.send('Não foi encontrada a conta/agência');
+    } else {
+      res.send(dataDeposit);
+    }
+  } catch (error) {
+    res.status(500).send('Erro a tentar localizar/atualizar conta ' + error);
+  }
+};
+
 //Função para saque de valores
 const updateWithdraw = async (req, res) => {
   const agencia = Number(req.params.agencia);
@@ -242,6 +266,7 @@ export default {
   findOne,
   findAll,
   updateDeposit,
+  updateDepositPatch,
   updateWithdraw,
   updateTransfer,
   findAverageBalance,

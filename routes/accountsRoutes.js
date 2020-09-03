@@ -10,6 +10,11 @@ app.get('/account', accountController.findAll);
 
 app.put('/account/:agencia/:conta/:deposito', accountController.updateDeposit);
 
+app.patch(
+  '/account/:agencia/:conta/:deposito',
+  accountController.updateDepositPatch
+);
+
 app.put(
   '/account/saque/:agencia/:conta/:saque',
   accountController.updateWithdraw
